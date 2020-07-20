@@ -11,10 +11,12 @@ import org.springframework.stereotype.Component;
 import edu.mum.component.MessageDisplay;
 import edu.mum.component.MessageOrigin;
 
-/*
- * Need to declare class...  
- */
-	 
+@Component
+class FileMessageDisplay implements MessageDisplay {
+
+	@Autowired
+	MessageOrigin messageOrigin;
+
     public void display() {
         if (messageOrigin == null) {
             throw new RuntimeException(
@@ -23,8 +25,7 @@ import edu.mum.component.MessageOrigin;
         }
 
         System.out.println(messageOrigin.getMessage());
-        
-         writeMessageToFile(messageOrigin.getMessage());
+        writeMessageToFile(messageOrigin.getMessage());
     }
 
     
@@ -34,11 +35,9 @@ import edu.mum.component.MessageOrigin;
     
     private void writeMessageToFile(String message) {
     	String fileName = "test.txt";
-  
     	String path = this.getClass().getClassLoader().getResource(".").getFile();
-
     	//create file
-    	
+		File file = new File(path + fileName);
     	try {
 			if (file.createNewFile()) {
 			    System.out.println("File is created!");

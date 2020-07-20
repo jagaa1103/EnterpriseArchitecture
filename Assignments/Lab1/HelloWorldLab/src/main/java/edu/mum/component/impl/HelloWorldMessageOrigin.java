@@ -13,12 +13,11 @@ import edu.mum.component.MessageOrigin;
 @Component
 public class HelloWorldMessageOrigin implements MessageOrigin {
  
-@Autowired
-private MessageSource messageSource;
+	@Autowired
+	private MessageSource messageSource;
 	
  	public String getMessage() {
- 		
-		  return messageSource.getMessage("messageText",null, Locale.getDefault());	}
-
+ 		return messageSource.getMessage("messageText",null, Locale.getDefault());
+ 	}
 
  }

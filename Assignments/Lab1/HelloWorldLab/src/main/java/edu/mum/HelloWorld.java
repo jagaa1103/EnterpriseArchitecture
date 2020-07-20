@@ -9,13 +9,14 @@ import edu.mum.component.MessageDisplay;
 
 public class HelloWorld {
     public static void main(String[] args) {
-   	 ApplicationContext applicationContext = new AnnotationConfigApplicationContext( JavaConfiguration.class );
+    	ApplicationContext applicationContext = new AnnotationConfigApplicationContext( JavaConfiguration.class );
  
-    	MessageDisplay messageDisplay = (MessageDisplay) applicationContext.getBean("standardOutMessageDisplay");
-          try {
-			messageDisplay.display();
+//    	MessageDisplay messageDisplay = (MessageDisplay) applicationContext.getBean("standardOutMessageDisplay");
+		MessageDisplay fileMessageDisplay = (MessageDisplay) applicationContext.getBean("fileMessageDisplay");
+    	try {
+//			messageDisplay.display();
+			fileMessageDisplay.display();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
