@@ -42,7 +42,7 @@ public class Main {
         try{
             User u = userService.findByEmail("djohn@miu.edu");
             System.out.println("******** User ********");
-            System.out.println(u.getEmail());
+            System.out.println(u.getFirstName() + " " + u.getLastName());
         }catch(Exception e){
             e.printStackTrace();
         }
