@@ -7,10 +7,11 @@ import javax.persistence.PersistenceContext;
 
 import edu.mum.dao.GenericDao;
 import edu.mum.dao.UserDao;
+import org.springframework.stereotype.Repository;
 
 
-/*@SuppressWarnings("unchecked")
-@Repository*/
+/*@SuppressWarnings("unchecked") */
+@Repository
 public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 
 	@PersistenceContext
