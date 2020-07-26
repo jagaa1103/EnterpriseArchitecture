@@ -38,9 +38,8 @@ public class TestUser {
 				.withAddress(new AddressBuilder()
 						.withCity("Red Rock")
  			 			.build())
- 				.build();    
-	    
-   UserCredentials userCredentials = new UserCredentialsBuilder() 
+ 				.build();
+   		UserCredentials userCredentials = new UserCredentialsBuilder()
 		   .withUserName("JohnDoe")
 		   .withPassword("DoeNuts")
 		   .withVerifyPassword("DoeNuts")
@@ -54,10 +53,9 @@ public class TestUser {
 			       .build())
 		   .withUser(user)
 		   .build();
-		   
+
    userCredentialsService.update(userCredentials);
-   
-    User readUser = userService.findByEmail("john@Doe.com");
+   User readUser = userService.findByEmail("john@Doe.com");
    
    System.out.println();
    System.out.println("        *********  User **********");
@@ -71,7 +69,7 @@ public class TestUser {
 	   System.out.println("Authority  : " + authority.getAuthority() );
 
    System.out.println("        *********  Addresses **********");
-  for (Address address :  new ArrayList<Address>(readUser.getAddresses()) )
+   for (Address address :  new ArrayList<Address>(readUser.getAddresses()) )
 		   System.out.println("Address City  : " + address.getCity() );
    
 }

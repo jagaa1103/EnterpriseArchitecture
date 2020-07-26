@@ -12,18 +12,16 @@ import javax.persistence.*;
  * @author Christian Bauer
  */
 @Entity
-
 public class CreditCard extends BillingDetails {
 	// Id Shared with Superclass - BillngDetails
 
- 
-    @Column( name = "CC_NUMBER", nullable = false, updatable = false, length = 16)
+    @Column( name = "CC_NUMBER", length = 16)
     private String number;
 
-    @Column( name = "CC_EXP_MONTH", nullable = false, updatable = false, length = 2)
+    @Column( name = "CC_EXP_MONTH", length = 2)
     private String expMonth="";
 
-    @Column( name = "CC_EXP_YEAR", nullable = false, updatable = false, length = 4)
+    @Column( name = "CC_EXP_YEAR", length = 4)
     private String expYear="";
 
     /**
@@ -38,7 +36,7 @@ public class CreditCard extends BillingDetails {
     public String getNumber() { return number; }
     public void setNumber(String number) { 
     	this.number = number; 
-    	}
+    }
 
     public String getExpMonth() { return expMonth; }
 

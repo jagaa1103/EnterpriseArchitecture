@@ -2,11 +2,7 @@ package edu.mum.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * The address of a User.
@@ -35,6 +31,13 @@ public class Address implements Serializable {
     @Column(length = 255, nullable = true)
 	private String city="";
 
+	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name="Address_User",
+			joinColumns={ @JoinColumn(name="id") },
+			inverseJoinColumns={ @JoinColumn(name="USER_ID")})
+	private User user;
+
+
 	/**
 	 * No-arg constructor for JavaBean tools
 	 */
@@ -57,7 +60,6 @@ public class Address implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public String getStreet() { return street; }
 	public void setStreet(String street) { this.street = street; }
@@ -98,5 +100,8 @@ public class Address implements Serializable {
 	}
 
 	// ********************** Business Methods ********************** //
-
+	public void addUser(User user){
+		this.user = user;
+		this.user.getAddresses().add(this);
+	}
 }

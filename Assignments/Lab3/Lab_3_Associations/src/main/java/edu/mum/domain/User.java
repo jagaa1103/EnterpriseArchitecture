@@ -1,20 +1,15 @@
 package edu.mum.domain;
 
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Version;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "USERS")
- public class User implements Serializable  {
+public class User implements Serializable  {
 
     @Id @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "USER_ID")
@@ -24,7 +19,7 @@ import javax.persistence.Version;
     private int version = 0;
 
     
-     @Column(name = "FIRSTNAME", nullable = false)
+    @Column(name = "FIRSTNAME", nullable = false)
     private String firstName;
 
     @Column(name = "LASTNAME", nullable = false)
@@ -39,9 +34,18 @@ import javax.persistence.Version;
     @Column(name = "IS_ADMIN", nullable = false)
     private Boolean admin = false;
 
+	@OneToOne(fetch=FetchType.EAGER,  cascade = CascadeType.ALL)
+	@JoinTable(name = "user_credential",
+			joinColumns = {@JoinColumn(name = "USER_ID")},
+			inverseJoinColumns = {@JoinColumn(name = "USER")})
 	private UserCredentials userCredentials;
 
+	@OneToMany(fetch=FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "user")
     private Set<Address> addresses = new HashSet<Address>();
+
+
+
+
 
 	public Long getId() {
 		return id;
@@ -117,6 +121,10 @@ import javax.persistence.Version;
 
 	public Set<Address> getAddresses() {
 		return addresses;
+	}
+	public void addAddress(Address address){
+		this.addresses.add(address);
+		address.addUser(this);
 	}
 
 	public void setAddresses(Set<Address> addresses) {

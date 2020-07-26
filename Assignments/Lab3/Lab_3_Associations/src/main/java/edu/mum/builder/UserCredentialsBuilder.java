@@ -33,7 +33,7 @@ public class UserCredentialsBuilder {
     }
 
     public UserCredentialsBuilder withUser(User user) {
-        this.userCredentials.addUser(user);
+        this.userCredentials.setUser(user);
         return this;
     }
 

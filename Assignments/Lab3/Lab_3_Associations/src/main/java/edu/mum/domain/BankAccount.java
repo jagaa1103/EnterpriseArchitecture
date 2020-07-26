@@ -41,7 +41,6 @@ public class BankAccount extends BillingDetails {
     }
 
     // ********************** Business Methods ********************** //
-
     public boolean isValid() {
         // TODO: Validate bank account syntax.
         return true;

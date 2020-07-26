@@ -21,35 +21,34 @@ public class TestBillingDetails {
 	CreditCardService creditCardService;
 	
 
- public void testBillingDetails() {
- 
-	 BankAccount bankAccount = new BankAccount();
-	 bankAccount.setOwner("Big Buck");
-	 bankAccount.setAccount("BANK");
-	 
-	 bankAccountService.save(bankAccount);
-	 
-	 CreditCard creditCard = new CreditCard();
-	 creditCard.setOwner("Big Debt");
-	 creditCard.setNumber("1234567");
- 	 
-	 creditCardService.save(creditCard);
-	 
-	 System.out.println();
-	   System.out.println("        *********  Bank Account Owner Name **********");
+ 	public void testBillingDetails() {
+ 		BankAccount bankAccount = new BankAccount();
+ 		bankAccount.setOwner("Big Buck");
+ 		bankAccount.setAccount("BANK");
+ 		bankAccountService.save(bankAccount);
 
-	   bankAccount = bankAccountService.findOne(bankAccount.getId());
+ 		CreditCard creditCard = new CreditCard();
+		creditCard.setNumber("1234567");
+ 		creditCard.setOwner("Big Debt");
+
+
+	 	creditCardService.save(creditCard);
+	 
+	 	System.out.println();
+	 	System.out.println("        *********  Bank Account Owner Name **********");
+
+	 	bankAccount = bankAccountService.findOne(bankAccount.getId());
 	   
-	   System.out.println("Bank Account Name: " + bankAccount.getAccount()  );
-	   System.out.println("Owner Name: " + bankAccount.getOwner()  );
+	 	System.out.println("Bank Account Name: " + bankAccount.getAccount()  );
+	 	System.out.println("Owner Name: " + bankAccount.getOwner()  );
 	   
-		 System.out.println();
-		 System.out.println("        *********  Credit Card Owner Name **********");
+	 	System.out.println();
+	 	System.out.println("        *********  Credit Card Owner Name **********");
 
-		   creditCard = creditCardService.findOne(creditCard.getId());
+	 	creditCard = creditCardService.findOne(creditCard.getId());
 
-		   System.out.println("Credit Card Number: " + creditCard.getNumber()  );
-		   System.out.println("Owner Name: " + creditCard.getOwner()  );
+	 	System.out.println("Credit Card Number: " + creditCard.getNumber()  );
+	 	System.out.println("Owner Name: " + creditCard.getOwner()  );
 		   
-}
+ }
 }

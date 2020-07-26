@@ -16,7 +16,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "ITEM")
- public class Item implements Serializable {
+public class Item implements Serializable {
 
     private static final String COLLECTION_ID_GENERATOR = "identity";
 
@@ -33,7 +33,7 @@ import java.util.*;
     private String name;
 
 
-     private User seller;
+    private User seller;
 
 
     private User buyer;
@@ -45,6 +45,7 @@ import java.util.*;
 
      private BigDecimal reservePrice;
 
+     @ManyToMany(mappedBy = "items", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
      private Set<Category> categories = new HashSet<Category>();
 
     @Transient
@@ -55,7 +56,7 @@ import java.util.*;
     private Date approvalDatetime;
  
     @Transient
-       private Collection<String> images = new ArrayList<String>();
+    private Collection<String> images = new ArrayList<String>();
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="CREATED", nullable = true, updatable = false)
@@ -113,7 +114,10 @@ import java.util.*;
  
     // Read-only, modify through Category#addItem() and Category@removeItem();
     public Set<Category> getCategories() { return Collections.unmodifiableSet(categories); }
-
+    public void addCategory(Category category){
+        this.categories.add(category);
+        category.getItems().add(this);
+    }
  
     public Collection<String> getImages() { return images; }
 

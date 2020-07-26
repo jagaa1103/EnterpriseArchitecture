@@ -25,11 +25,9 @@ public class Main {
     applicationContext.getBean(Main.class).mainInternal(applicationContext);
   }
     private void mainInternal(ApplicationContext applicationContext) {
-
-  
     testUser.testUser();
     testItemCategory.testItemCategory();
-    // Inheritance
+
     testBillingDetails.testBillingDetails();
     
  }
