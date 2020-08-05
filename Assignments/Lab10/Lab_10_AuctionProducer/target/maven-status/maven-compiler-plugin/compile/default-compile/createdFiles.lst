@@ -1,0 +1,5 @@
+edu\mum\amqp\ItemServiceImpl.class
+edu\mum\domain\Item.class
+edu\mum\AmqpProducerMain.class
+edu\mum\amqp\ItemService.class
+edu\mum\integration\AuctionItemRouter.class
