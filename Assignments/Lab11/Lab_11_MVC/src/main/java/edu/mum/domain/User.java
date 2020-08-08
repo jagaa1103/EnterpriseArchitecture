@@ -1,4 +1,4 @@
-		package edu.mum.domain;
+package edu.mum.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -26,46 +26,52 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import edu.mum.validation.EmptyOrSize;
+
 @Entity
 @Table(name = "USERS")
- public class User implements Serializable  {
+public class User implements Serializable {
 
-    @Id @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name = "USER_ID")
-    private Long id = null;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "USER_ID")
+	private Long id = null;
 
-    @Version
-    private int version = 0;
+	@Version
+	private int version = 0;
 
+	@Column(name = "FIRSTNAME", nullable = false)
+	@EmptyOrSize(min = 4, max = 19, message = "{Size.name.validation}")
+	private String firstName;
 
-       @Column(name = "FIRSTNAME", nullable = false)
-    private String firstName;
+	@Column(name = "LASTNAME", nullable = false)
+	@NotEmpty(message = "{NotEmpty}")
+	private String lastName;
 
-       @Column(name = "LASTNAME", nullable = false)
-    private String lastName;
+	@Column(name = "EMAIL", nullable = false)
+	@NotEmpty(message = "{email}")
+	private String email;
 
-     @Column(name = "EMAIL", nullable = false)
-    private String email;
+	@Column(name = "RATING", nullable = false)
+	private Integer rating = 0;
 
-     @Column(name = "RATING", nullable = false)
-    private Integer rating = 0;
+	@Column(name = "IS_ADMIN", nullable = false)
+	private boolean admin = false;
 
-    @Column(name = "IS_ADMIN", nullable = false)
-    private boolean admin = false;
-
-  	@OneToOne(fetch=FetchType.LAZY,  cascade = CascadeType.ALL) 
-	@JoinColumn(name="userId") 
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "userId")
+	@Valid()
 	private UserCredentials userCredentials;
 
-	   @OneToMany(fetch=FetchType.EAGER, cascade = {CascadeType.PERSIST,CascadeType.MERGE}, mappedBy="user")
-	     private List<Address> addresses = new ArrayList<Address>();
+	@OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "user")
+	private List<Address> addresses = new ArrayList<Address>();
 
-/*	   @OneToMany(mappedBy = "seller")
-	    private Collection<Item> itemsForSale = new ArrayList<Item>();
-*/
-	    @OneToMany(fetch=FetchType.EAGER, cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-	    private Set<Item> boughtItems = new HashSet<Item>();
-
+	/*
+	 * @OneToMany(mappedBy = "seller") private Collection<Item> itemsForSale = new
+	 * ArrayList<Item>();
+	 */
+	@OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private Set<Item> boughtItems = new HashSet<Item>();
 
 	public Long getId() {
 		return id;
@@ -146,7 +152,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 	public void setBoughtItems(Set<Item> boughtItems) {
 		this.boughtItems = boughtItems;
 	}
-	
+
 	public void addBoughtItem(Item boughtItem) {
 		this.boughtItems.add(boughtItem);
 	}

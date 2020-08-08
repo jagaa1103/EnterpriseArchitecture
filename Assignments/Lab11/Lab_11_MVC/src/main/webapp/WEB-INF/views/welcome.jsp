@@ -23,8 +23,8 @@
       					<a href="<spring:url value='   ' />" class="btn btn-default pull-right"> Login</a>
 					    </c:when>
 					    <c:otherwise>
-		 					<a href="<spring:url value="    " />" class="btn btn-default pull-right">Add User</a>	
-		 					<a href="<spring:url value="    " />" class="btn btn-default pull-right">User List</a>	
+		 					<a href="<spring:url value="users/add" />" class="btn btn-default pull-right">Add Member</a>		
+		 					<a href="<spring:url value="users" />" class="btn btn-default pull-right">User List</a>	
 		 					<br>
 		 					<a href="<spring:url value="    " />" class="btn btn-default pull-right">Add Item</a>	
 		 					<a href="<spring:url value="     " />" class="btn btn-default pull-right">Item List</a>	

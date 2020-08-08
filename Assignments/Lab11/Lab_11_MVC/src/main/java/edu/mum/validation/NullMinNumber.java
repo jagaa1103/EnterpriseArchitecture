@@ -22,6 +22,7 @@ import org.hibernate.validator.constraints.ConstraintComposition;
  import org.hibernate.validator.constraints.CompositionType;
 
 
+
 	@NotNull
 	@Min(value = 0)
 	@Target( { ElementType.METHOD, ElementType.FIELD })
@@ -35,6 +36,7 @@ import org.hibernate.validator.constraints.ConstraintComposition;
 		String message() default "Number must have minimum value";
 
 		Class<?>[] groups() default {};
+
 		Class<? extends Payload>[] payload() default {  };
 
 		@OverridesAttribute(constraint = Min.class, name = "value")
